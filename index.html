@@ -102,12 +102,15 @@
             width: 300px;
             text-align: center;
         }
+        .justified {
+            text-align: justify;
+        }
     </style>
 </head>
 <body>
     <header>
         <nav>
-            <a href="index.html">SimpleShop</a>
+            <a href="index.html">Kape-Sipingan</a>
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
@@ -118,39 +121,39 @@
 
     <div class="container">
         <div class="jumbotron">
-            <h1>Welcome to SimpleShop!</h1>
+            <h1>Welcome to Kape-Sipingan!</h1>
             <p class="lead">Check out our amazing products below.</p>
         </div>
 
         <div class="card">
-            <img src="https://img.freepik.com/free-photo/delicious-quality-coffee-cup_23-2150691321.jpg" alt="Coffee">
+            <img src="img/71fb1c60-dc24-42b6-a190-99d18a7cd5cf.jpeg" alt="Coffee">
             <div class="card-body">
                 <h5>Coffee</h5>
-                <p>Explore our coffee offerings in three exquisite flavors.</p>
+                <p class="justified">Explore our diverse coffee selection, available in three exquisite flavors, each crafted to provide a unique and satisfying experience.</p>
                 <select id="coffeeType">
-                    <option value="Spanish">Spanish Latte</option>
-                    <option value="White Mocha">White Mocha</option>
-                    <option value="Cappuccino">Cappuccino</option>
+                    <option value="Klasiko">Cafe' au Lait (Klasiko)</option>
+                    <option value="Sea Salt">White Mocha(Sea Salt)</option>
+                    <option value="Tsokolate">Cappuccino(Tsokolate)</option>
                 </select>
-                <button class="add-to-cart-button" onclick="addToCart('Coffee', 80)">Add to Cart</button>
+                <button class="add-to-cart-button" onclick="addToCart('Coffee', 69)">Add to Cart</button>
             </div>
         </div>
 
         <div class="card">
-            <img src="https://img.freepik.com/free-photo/painting-sushi-plate-with-picture-fish-it_188544-12221.jpg" alt="Sushi">
+            <img src="img/e10d838b-0333-4047-ac79-ef2784756b4c.jpeg" alt="Brownies">
             <div class="card-body">
-                <h5>Sushi Platter</h5>
-                <p>Enjoy our freshly made sushi platter.</p>
-                <button onclick="addToCart('Sushi Platter', 100)">Add to Cart</button>
+                <h5>Brownies</h5>
+                <p class="justified">Enjoy our decadent brownies, rich with chocolate and baked to fudgy perfection for a truly irresistible dessert experience.</p>
+                <button onclick="addToCart('Brownies', 75)">Add to Cart</button>
             </div>
         </div>
 
         <div class="card">
-            <img src="https://images6.alphacoders.com/133/1334073.png" alt="Product 3">
+            <img src="img/08090566-944a-489a-9ba1-77c224d33cf2.jpeg" alt="Churros">
             <div class="card-body">
-                <h5>Product 3</h5>
-                <p>Description of product 3.</p>
-                <button onclick="addToCart('Product 3', 150)">Add to Cart</button>
+                <h5>Churros</h5>
+                <p class="justified">Indulge in our freshly made churros, coated with a delightful blend of cinnamon sugar for the perfect sweet and crispy treat.</p>
+                <button onclick="addToCart('Churros', 79)">Add to Cart</button>
             </div>
         </div>
     </div>
@@ -176,13 +179,16 @@
 
         function addToCart(productName, price) {
             let productType = productName;
+            // Check if the product is Coffee and get the specific type from the select dropdown
             if (productName === 'Coffee') {
-                productType += ' (' + document.getElementById('coffeeType').value + ')';
+                productType = document.getElementById('coffeeType').options[document.getElementById('coffeeType').selectedIndex].text;
             }
+            // Add the specific product type to the cart
             cart.push({productName: productType, price});
             total += price;
             displayCart();
         }
+
 
         function displayCart() {
             const cartItems = document.getElementById('cartItems');
