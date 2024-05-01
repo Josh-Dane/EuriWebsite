@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple E-Commerce Site</title>
+    <link rel="icon" type="image/png" href="img/90c26a9f-1963-4e36-876f-e3a8f97380a9.jpeg">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -110,14 +111,14 @@
 <body>
     <header>
         <nav>
-            <a href="index.html">Kape-Sipingan</a>
+            <a href="index.html"><img src="img/90c26a9f-1963-4e36-876f-e3a8f97380a9.jpeg" alt="Kape-Sipingan Logo" style="height: 100px;"></a>
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-    </header>
+    </header>    
 
     <div class="container">
         <div class="jumbotron">
@@ -153,10 +154,13 @@
             <div class="card-body">
                 <h5>Churros</h5>
                 <p class="justified">Indulge in our freshly made churros, coated with a delightful blend of cinnamon sugar for the perfect sweet and crispy treat.</p>
-                <button onclick="addToCart('Churros', 79)">Add to Cart</button>
+                <select id="churroFlavor">
+                    <option value="Strawberry">Strawberry Churros</option>
+                    <option value="Chocolate">Chocolate Churros</option>
+                </select>
+                <button class="add-to-cart-button"onclick="addToCart('Churros', 79)">Add to Cart</button>
             </div>
-        </div>
-    </div>
+        </div>        
 
     <div id="cart">
         <h4>Cart</h4>
@@ -179,15 +183,20 @@
 
         function addToCart(productName, price) {
             let productType = productName;
-            // Check if the product is Coffee and get the specific type from the select dropdown
+            // Handle Coffee flavor selection
             if (productName === 'Coffee') {
                 productType = document.getElementById('coffeeType').options[document.getElementById('coffeeType').selectedIndex].text;
+            }
+            // Handle Churros flavor selection
+            if (productName === 'Churros') {
+                productType = document.getElementById('churroFlavor').options[document.getElementById('churroFlavor').selectedIndex].text;
             }
             // Add the specific product type to the cart
             cart.push({productName: productType, price});
             total += price;
             displayCart();
         }
+
 
 
         function displayCart() {
